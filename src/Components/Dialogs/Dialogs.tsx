@@ -1,34 +1,26 @@
 import React from "react";
 import c from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import {DialogItem} from "./DialogItem/Dialog.item";
+import {Message} from "./Message/Message";
+
+
+
 
 export const Dialogs = () => {
     return (
         <div className={c.dialogs}>
             <div className={c.dialogsItems}>
-                <div className={`${c.dialog} ${c.active}`}>
-                    <NavLink to='/dialogs/1'>Dima</NavLink>
-                </div>
-                <div className={c.dialog}>
-                    <NavLink to='/dialogs/2'>Andrey</NavLink>
-                </div>
-                <div className={c.dialog}>
-                    <NavLink to='/dialogs/3'>Sergey</NavLink>
-                </div>
-                <div className={c.dialog}>
-                    <NavLink to='/dialogs/4'>Anna</NavLink>
-                </div>
-                <div className={c.dialog}>
-                    <NavLink to='/dialogs/5'>Sasha</NavLink>
-                </div>
-                <div className={c.dialog}>
-                    <NavLink to='/dialogs/6'>Valera</NavLink>
-                </div>
+                <DialogItem name={'Dima'} id={'1'}/>
+                <DialogItem name={'Andrey'} id={'2'}/>
+                <DialogItem name={'Sergey'} id={'3'}/>
+                <DialogItem name={'Anna'} id={'4'}/>
+                <DialogItem name={'Sasha'} id={'5'}/>
+                <DialogItem name={'Valera'} id={'6'}/>
             </div>
             <div className={c.messages}>
-                <div className={c.message}>Hi</div>
-                <div className={c.message}>How are you?</div>
-                <div className={c.message}>You are Best!</div>
+                <Message message={'Hi'}/>
+                <Message message={'How are you?'}/>
+                <Message message={'You the best!!'}/>
 
 
             </div>
