@@ -3,19 +3,25 @@ import './App.css';
 import {Header} from "./Components/Header/Header";
 import {Navbar} from "./Components/Navbar/Navbar";
 import {Profile} from "./Components/Profile/Profile";
-import {Dialogs} from "./Components/Dialogs/Dialogs";
+import {Dialogs,  DialogsType, MessagesType} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
+import {postsType} from "./Components/Profile/MyPosts/MyPosts";
 
+type AppPropsType = {
+    dialogs:Array<DialogsType>
+    messages:Array<MessagesType>
+    posts:Array<postsType>
+}
+function App(props:AppPropsType) {
 
-function App() {
     return (
         <BrowserRouter>
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path='/dialogs' component={Dialogs}/>
-                <Route path='/profile' component={Profile}/>
+                <Route path='/dialogs' render={()=> <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                <Route path='/profile' render={()=> <Profile posts={props.posts}/>}/>
                 {/*<Route path='/news' component={News}/>*/}
                 {/*<Route path='/music' component={Music}/>*/}
                 {/*<Route path='/setting' component={Setting}/>*/}
