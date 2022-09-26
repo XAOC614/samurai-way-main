@@ -7,12 +7,15 @@ import {Dialogs,  DialogsType, MessagesType} from "./Components/Dialogs/Dialogs"
 import {BrowserRouter, Route} from "react-router-dom";
 import {postsType} from "./Components/Profile/MyPosts/MyPosts";
 
-type AppPropsType = {
-    dialogs:Array<DialogsType>
-    messages:Array<MessagesType>
-    posts:Array<postsType>
+type StatePropsType = {
+    state: {
+        dialogPage: {dialogs:Array<DialogsType>
+                        messages:Array<MessagesType>}
+        profilePage: {posts:Array<postsType>}
+    }
+
 }
-function App(props:AppPropsType) {
+function App(props:StatePropsType) {
 
     return (
         <BrowserRouter>
@@ -20,8 +23,8 @@ function App(props:AppPropsType) {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path='/dialogs' render={()=> <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                <Route path='/profile' render={()=> <Profile posts={props.posts}/>}/>
+                <Route path='/dialogs' render={()=> <Dialogs dialogs={props.state.dialogPage.dialogs} messages={props.state.dialogPage.messages}/>}/>
+                <Route path='/profile' render={()=> <Profile posts={props.state.profilePage.posts}/>}/>
                 {/*<Route path='/news' component={News}/>*/}
                 {/*<Route path='/music' component={Music}/>*/}
                 {/*<Route path='/setting' component={Setting}/>*/}
