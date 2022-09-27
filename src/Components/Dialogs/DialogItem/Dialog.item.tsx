@@ -4,7 +4,7 @@ import React from "react";
 
 type DialogItemType = {
     name:string
-    id:string
+    id:number
 }
 export const DialogItem = (props:DialogItemType) => {
     let path = '/dialogs/'+ props.id

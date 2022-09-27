@@ -3,11 +3,11 @@ import c from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/Dialog.item";
 import {Message} from "./Message/Message";
 export type DialogsType = {
-    id:string
+    id:number
     name:string
 }
 export type MessagesType = {
-    id:string
+    id:number
     message:string
 }
 export type DialogsPropsType = {
