@@ -14,8 +14,6 @@ export type StatePropsType = {
 }
 
 function App(props: StatePropsType) {
-  const { addPost } = props.store
-
   return (
     <div className="app-wrapper">
       <Header />
@@ -35,9 +33,8 @@ function App(props: StatePropsType) {
           render={() => (
             <Profile
               posts={props.store.getState().profilePage.posts}
-              addPost={addPost.bind(props.store)}
+              dispatch={props.store.dispatch.bind(props.store)}
               newPostText={props.store.getState().profilePage.newPostText}
-              updateNewPostText={props.store.updateNewPostText.bind(props.store)}
             />
           )}
         />
