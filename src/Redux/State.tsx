@@ -23,6 +23,18 @@ type AddPostActionType = {
 }
 export type ActionsType = NewPostTextActionType | AddPostActionType
 
+export const addPostAC = (): AddPostActionType => {
+  return {
+    type: 'ADD-POST',
+  }
+}
+export const updateNewPostTextAC = (text: string): NewPostTextActionType => {
+  return {
+    type: 'UPDATE-NEW-POST-TEXT',
+    newText: text,
+  }
+}
+
 export let store: storeType = {
   _state: {
     profilePage: {
