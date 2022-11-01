@@ -1,41 +1,49 @@
-import React from "react";
+import React, { ChangeEvent } from 'react'
+
+import { ActionsType, sendMessageAC, updateNewMessageBodyAC } from '../../Redux/State'
+
+import { DialogItem } from './DialogItem/Dialog.item'
 import c from './Dialogs.module.css'
-import {DialogItem} from "./DialogItem/Dialog.item";
-import {Message} from "./Message/Message";
+import { Message } from './Message/Message'
 export type DialogsType = {
-    id:number
-    name:string
+  id: number
+  name: string
 }
 export type MessagesType = {
-    id:number
-    message:string
+  id: number
+  message: string
 }
 export type DialogsPropsType = {
-    dialogs:Array<DialogsType>
-    messages:Array<MessagesType>
+  dialogs: Array<DialogsType>
+  messages: Array<MessagesType>
+  newMessageBody: string
+  dispatch: (action: ActionsType) => void
 }
 
-export const Dialogs = (props:DialogsPropsType) => {
-    let newMessageElement = React.createRef<HTMLTextAreaElement>()
-    let addMessage = () => {
-        alert(newMessageElement.current?.value)
-    }
-    let dialogsElements = props.dialogs.map(d=> (<DialogItem name={d.name} id={d.id}/>))
+export const Dialogs = (props: DialogsPropsType) => {
+  let newMessageBody = props.newMessageBody
+  let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let body = e.currentTarget.value
 
-    let messagesElements = props.messages.map(m=>(<Message message={m.message}/>))
+    props.dispatch(updateNewMessageBodyAC(body))
+  }
+  let onMessageClick = () => {
+    props.dispatch(sendMessageAC())
+  }
+  let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} />)
 
-    return (
-        <div className={c.dialogs}>
-            <div className={c.dialogsItems}>
-                {dialogsElements}
-            </div>
-            <div className={c.messages}>
-                {messagesElements}
-                <textarea ref={newMessageElement}></textarea>
-                <div>
-                <button onClick={addMessage}>New Message</button>
-                </div>
-            </div>
+  let messagesElements = props.messages.map(m => <Message message={m.message} />)
+
+  return (
+    <div className={c.dialogs}>
+      <div className={c.dialogsItems}>{dialogsElements}</div>
+      <div className={c.messages}>
+        {messagesElements}
+        <textarea value={newMessageBody} onChange={onNewMessageChange}></textarea>
+        <div>
+          <button onClick={onMessageClick}>New Message</button>
         </div>
-    )
+      </div>
+    </div>
+  )
 }

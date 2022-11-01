@@ -21,18 +21,40 @@ type NewPostTextActionType = {
 type AddPostActionType = {
   type: 'ADD-POST'
 }
-export type ActionsType = NewPostTextActionType | AddPostActionType
+type NewMessageBodyType = {
+  type: 'UPDATE-NEW-MESSAGE-BODY'
+  body: string
+}
+type SendMessageType = {
+  type: 'SEND-MESSAGE'
+}
+export type ActionsType =
+  | NewPostTextActionType
+  | AddPostActionType
+  | NewMessageBodyType
+  | SendMessageType
 
 export const addPostAC = (): AddPostActionType => {
   return {
     type: 'ADD-POST',
-  }
+  } as const
 }
 export const updateNewPostTextAC = (text: string): NewPostTextActionType => {
   return {
     type: 'UPDATE-NEW-POST-TEXT',
     newText: text,
-  }
+  } as const
+}
+export const sendMessageAC = () => {
+  return {
+    type: 'SEND-MESSAGE',
+  } as const
+}
+export const updateNewMessageBodyAC = (body: string) => {
+  return {
+    type: 'UPDATE-NEW-MESSAGE-BODY',
+    body: body,
+  } as const
 }
 
 export let store: storeType = {
@@ -58,6 +80,7 @@ export let store: storeType = {
         { id: 2, message: 'How are you?' },
         { id: 3, message: 'You the best!!' },
       ],
+      newMessageBody: '',
     },
   },
   _callSubscriber() {
@@ -99,6 +122,16 @@ export let store: storeType = {
       rerenderEntireTree()
     } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
       this._state.profilePage.newPostText = action.newText
+      rerenderEntireTree()
+    } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+      this._state.dialogPage.newMessageBody = action.body
+      rerenderEntireTree()
+    } else if (action.type === 'SEND-MESSAGE') {
+      let body = this._state.dialogPage.newMessageBody
+
+      this._state.dialogPage.messages.push({ id: 4, message: body })
+      this._state.dialogPage.newMessageBody = ''
+
       rerenderEntireTree()
     }
   },

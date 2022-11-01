@@ -17,6 +17,7 @@ export type stateType = {
   dialogPage: {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageBody: string
   }
 }
 

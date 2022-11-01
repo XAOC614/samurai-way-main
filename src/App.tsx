@@ -25,6 +25,8 @@ function App(props: StatePropsType) {
             <Dialogs
               dialogs={props.store.getState().dialogPage.dialogs}
               messages={props.store.getState().dialogPage.messages}
+              newMessageBody={props.store.getState().dialogPage.newMessageBody}
+              dispatch={props.store.dispatch.bind(props.store)}
             />
           )}
         />
