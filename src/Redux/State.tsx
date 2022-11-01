@@ -2,7 +2,10 @@ import React from 'react'
 
 import { rerenderEntireTree, stateType } from '../index'
 
-type newPostType = {
+import { dialogReducer } from './DialogsReducer'
+import { profileReducer } from './ProfileReducer'
+
+export type newPostType = {
   id: number
   message: string
   like: number
@@ -33,29 +36,6 @@ export type ActionsType =
   | AddPostActionType
   | NewMessageBodyType
   | SendMessageType
-
-export const addPostAC = (): AddPostActionType => {
-  return {
-    type: 'ADD-POST',
-  } as const
-}
-export const updateNewPostTextAC = (text: string): NewPostTextActionType => {
-  return {
-    type: 'UPDATE-NEW-POST-TEXT',
-    newText: text,
-  } as const
-}
-export const sendMessageAC = () => {
-  return {
-    type: 'SEND-MESSAGE',
-  } as const
-}
-export const updateNewMessageBodyAC = (body: string) => {
-  return {
-    type: 'UPDATE-NEW-MESSAGE-BODY',
-    body: body,
-  } as const
-}
 
 export let store: storeType = {
   _state: {
@@ -110,29 +90,31 @@ export let store: storeType = {
   //   rerenderEntireTree()
   // },
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      let newPost: newPostType = {
-        id: new Date().getTime(),
-        message: this._state.profilePage.newPostText,
-        like: 0,
-      }
+    this._state = profileReducer(this._state, action)
+    this._state = dialogReducer(this._state, action)
 
-      this._state.profilePage.posts.push(newPost)
-      this._state.profilePage.newPostText = ''
-      rerenderEntireTree()
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-      this._state.profilePage.newPostText = action.newText
-      rerenderEntireTree()
-    } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-      this._state.dialogPage.newMessageBody = action.body
-      rerenderEntireTree()
-    } else if (action.type === 'SEND-MESSAGE') {
-      let body = this._state.dialogPage.newMessageBody
+    // if (action.type === 'ADD-POST') {
+    //   let newPost: newPostType = {
+    //     id: new Date().getTime(),
+    //     message: this._state.profilePage.newPostText,
+    //     like: 0,
+    //   }
+    //
+    //   this._state.profilePage.posts.push(newPost)
+    //   this._state.profilePage.newPostText = ''
+    //   rerenderEntireTree()
+    // } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+    //   this._state.profilePage.newPostText = action.newText
+    //   rerenderEntireTree()
+    // } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+    //   this._state.dialogPage.newMessageBody = action.body
+    //   rerenderEntireTree()
+    // } else if (action.type === 'SEND-MESSAGE') {
+    //   let body = this._state.dialogPage.newMessageBody
+    //
+    //   this._state.dialogPage.messages.push({ id: 4, message: body })
+    //   this._state.dialogPage.newMessageBody = ''
 
-      this._state.dialogPage.messages.push({ id: 4, message: body })
-      this._state.dialogPage.newMessageBody = ''
-
-      rerenderEntireTree()
-    }
+    rerenderEntireTree()
   },
 }
