@@ -1,13 +1,13 @@
 import React from 'react'
 
 import './App.css'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
-import { Dialogs, DialogsType, MessagesType } from './Components/Dialogs/Dialogs'
+import { Dialogs } from './Components/Dialogs/Dialogs'
 import { Header } from './Components/Header/Header'
 import { Navbar } from './Components/Navbar/Navbar'
 import { Profile } from './Components/Profile/Profile'
-import { storeType } from './Redux/State'
+import { storeType } from './Redux/Store'
 
 export type StatePropsType = {
   store: storeType

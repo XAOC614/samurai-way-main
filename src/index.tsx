@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { DialogsType, MessagesType } from './Components/Dialogs/Dialogs'
 import { postsType } from './Components/Profile/MyPosts/MyPosts'
-import { store, storeType } from './Redux/State'
+import { store } from './Redux/ReduxStore'
 
 export type stateType = {
   profilePage: {

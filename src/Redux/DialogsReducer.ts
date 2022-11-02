@@ -1,18 +1,42 @@
-import { stateType } from '../index'
+import { DialogsType, MessagesType } from '../Components/Dialogs/Dialogs'
 
-import { ActionsType } from './State'
+import { ActionsType } from './Store'
+type InitialStateType = {
+  dialogs: Array<DialogsType>
+  messages: Array<MessagesType>
+  newMessageBody: string
+}
+let initialState = {
+  dialogs: [
+    { id: 1, name: 'Dima' },
+    { id: 2, name: 'Andrey' },
+    { id: 3, name: 'Sergey' },
+    { id: 4, name: 'Anna' },
+    { id: 5, name: 'Sasha' },
+    { id: 6, name: 'Valera' },
+  ],
+  messages: [
+    { id: 1, message: 'Hi' },
+    { id: 2, message: 'How are you?' },
+    { id: 3, message: 'You the best!!' },
+  ],
+  newMessageBody: '',
+}
 
-export const dialogReducer = (state: stateType, action: ActionsType): stateType => {
+export const dialogReducer = (
+  state: InitialStateType = initialState,
+  action: ActionsType
+): InitialStateType => {
   switch (action.type) {
     case 'UPDATE-NEW-MESSAGE-BODY':
-      state.dialogPage.newMessageBody = action.body
+      state.newMessageBody = action.body
 
       return state
     case 'SEND-MESSAGE':
-      let body = state.dialogPage.newMessageBody
+      let body = state.newMessageBody
 
-      state.dialogPage.messages.push({ id: 4, message: body })
-      state.dialogPage.newMessageBody = ''
+      state.messages.push({ id: 4, message: body })
+      state.newMessageBody = ''
 
       return state
     default:

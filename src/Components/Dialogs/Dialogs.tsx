@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
 
 import { sendMessageAC, updateNewMessageBodyAC } from '../../Redux/DialogsReducer'
-import { ActionsType } from '../../Redux/State'
+import { ActionsType } from '../../Redux/Store'
 
 import { DialogItem } from './DialogItem/Dialog.item'
 import c from './Dialogs.module.css'
