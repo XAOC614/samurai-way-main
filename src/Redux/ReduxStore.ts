@@ -4,8 +4,10 @@ import { dialogReducer } from './DialogsReducer'
 import { profileReducer } from './ProfileReducer'
 
 let reducers = combineReducers({
-  profileReducer,
-  dialogReducer,
+  profilePage: profileReducer,
+  dialogPage: dialogReducer,
 })
 
 export let store = createStore(reducers)
+
+export type AppStoreType = typeof store
