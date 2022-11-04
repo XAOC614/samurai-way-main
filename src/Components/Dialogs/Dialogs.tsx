@@ -18,7 +18,8 @@ export type DialogsPropsType = {
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
   newMessageBody: string
-  dispatch: (action: ActionsType) => void
+  updateNewMessageBody: (body: string) => void
+  onMessageClick: () => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -26,14 +27,18 @@ export const Dialogs = (props: DialogsPropsType) => {
   let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let body = e.currentTarget.value
 
-    props.dispatch(updateNewMessageBodyAC(body))
+    props.updateNewMessageBody(body)
   }
   let onMessageClick = () => {
-    props.dispatch(sendMessageAC())
+    props.onMessageClick()
   }
-  let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} />)
+  let dialogsElements = props.dialogs.map((d, index) => (
+    <DialogItem name={d.name} id={d.id} key={index} />
+  ))
 
-  let messagesElements = props.messages.map(m => <Message message={m.message} />)
+  let messagesElements = props.messages.map((m, index) => (
+    <Message message={m.message} key={index} />
+  ))
 
   return (
     <div className={c.dialogs}>

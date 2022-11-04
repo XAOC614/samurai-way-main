@@ -3,7 +3,7 @@ import React from 'react'
 import './App.css'
 import { Route } from 'react-router-dom'
 
-import { Dialogs } from './Components/Dialogs/Dialogs'
+import { DialogsContainer } from './Components/Dialogs/DialogContainer'
 import { Header } from './Components/Header/Header'
 import { Navbar } from './Components/Navbar/Navbar'
 import { Profile } from './Components/Profile/Profile'
@@ -22,7 +22,7 @@ function App(props: StatePropsType) {
         <Route
           path="/dialogs"
           render={() => (
-            <Dialogs
+            <DialogsContainer
               dialogs={props.store.getState().dialogPage.dialogs}
               messages={props.store.getState().dialogPage.messages}
               newMessageBody={props.store.getState().dialogPage.newMessageBody}

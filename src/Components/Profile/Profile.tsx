@@ -1,13 +1,17 @@
 import React from 'react'
 
-import { MyPosts, MyPostsType } from './MyPosts/MyPosts'
+import { MyPostsContainer, MyPostsContainerType } from './MyPosts/MyPostContainer'
 import { ProfileInfo } from './ProfileInfo/ProfileInfo'
 
-export const Profile = (props: MyPostsType) => {
+export const Profile = (props: MyPostsContainerType) => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts dispatch={props.dispatch} posts={props.posts} newPostText={props.newPostText} />
+      <MyPostsContainer
+        dispatch={props.dispatch}
+        posts={props.posts}
+        newPostText={props.newPostText}
+      />
     </div>
   )
 }
