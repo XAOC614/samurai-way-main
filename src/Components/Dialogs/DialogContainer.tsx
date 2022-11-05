@@ -1,13 +1,14 @@
 import React, { ChangeEvent } from 'react'
 
-import { sendMessageAC, updateNewMessageBodyAC } from '../../Redux/DialogsReducer'
-import { ActionsType } from '../../Redux/Store'
-import { StoreContext } from '../../StoreContext'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 
-import { DialogItem } from './DialogItem/Dialog.item'
+import { sendMessageAC, updateNewMessageBodyAC } from '../../Redux/DialogsReducer'
+import { AppStateType } from '../../Redux/ReduxStore'
+import { ActionsType } from '../../Redux/Store'
+
 import { Dialogs } from './Dialogs'
-import c from './Dialogs.module.css'
-import { Message } from './Message/Message'
+
 export type DialogsType = {
   id: number
   name: string
@@ -23,27 +24,46 @@ export type DialogsPropsType = {
   dispatch: (action: ActionsType) => void
 }
 
-export const DialogsContainer = () => {
-  return (
-    <StoreContext.Consumer>
-      {store => {
-        let onNewMessageChange = (body: string) => {
-          store.dispatch(updateNewMessageBodyAC(body))
-        }
-        let onMessageClick = () => {
-          store.dispatch(sendMessageAC())
-        }
-
-        return (
-          <Dialogs
-            dialogs={store.getState().dialogPage.dialogs}
-            messages={store.getState().dialogPage.messages}
-            newMessageBody={store.getState().dialogPage.newMessageBody}
-            updateNewMessageBody={onNewMessageChange}
-            onMessageClick={onMessageClick}
-          />
-        )
-      }}
-    </StoreContext.Consumer>
-  )
+// export const DialogsContainer = () => {
+//   return (
+//     <StoreContext.Consumer>
+//       {store => {
+//         let onNewMessageChange = (body: string) => {
+//           store.dispatch(updateNewMessageBodyAC(body))
+//         }
+//         let onMessageClick = () => {
+//           store.dispatch(sendMessageAC())
+//         }
+//
+//         return (
+//           <Dialogs
+//             dialogs={store.getState().dialogPage.dialogs}
+//             messages={store.getState().dialogPage.messages}
+//             newMessageBody={store.getState().dialogPage.newMessageBody}
+//             updateNewMessageBody={onNewMessageChange}
+//             onMessageClick={onMessageClick}
+//           />
+//         )
+//       }}
+//     </StoreContext.Consumer>
+//   )
+// }
+let mapStateToProps = (state: AppStateType) => {
+  return {
+    dialogs: state.dialogPage.dialogs,
+    messages: state.dialogPage.messages,
+    newMessageBody: state.dialogPage.newMessageBody,
+  }
 }
+let mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    updateNewMessageBody: (body: string) => {
+      dispatch(updateNewMessageBodyAC(body))
+    },
+    onMessageClick: () => {
+      dispatch(sendMessageAC())
+    },
+  }
+}
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)

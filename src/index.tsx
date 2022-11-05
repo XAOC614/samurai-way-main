@@ -2,13 +2,13 @@ import React from 'react'
 
 import './index.css'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
 import { DialogsType, MessagesType } from './Components/Dialogs/Dialogs'
 import { postsType } from './Components/Profile/MyPosts/MyPosts'
 import { store } from './Redux/ReduxStore'
-import { Provider, StoreContext } from './StoreContext'
 
 export type stateType = {
   profilePage: {

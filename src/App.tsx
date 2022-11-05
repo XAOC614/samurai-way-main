@@ -7,10 +7,10 @@ import { DialogsContainer } from './Components/Dialogs/DialogContainer'
 import { Header } from './Components/Header/Header'
 import { Navbar } from './Components/Navbar/Navbar'
 import { Profile } from './Components/Profile/Profile'
-import { AppStoreType } from './Redux/ReduxStore'
+import { AppStateType } from './Redux/ReduxStore'
 
 export type StatePropsType = {
-  store: AppStoreType
+  store: AppStateType
 }
 
 function App() {
