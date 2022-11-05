@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react'
 
 import { sendMessageAC, updateNewMessageBodyAC } from '../../Redux/DialogsReducer'
 import { ActionsType } from '../../Redux/Store'
+import { StoreContext } from '../../StoreContext'
 
 import { DialogItem } from './DialogItem/Dialog.item'
 import { Dialogs } from './Dialogs'
@@ -22,21 +23,27 @@ export type DialogsPropsType = {
   dispatch: (action: ActionsType) => void
 }
 
-export const DialogsContainer = (props: DialogsPropsType) => {
-  let onNewMessageChange = (body: string) => {
-    props.dispatch(updateNewMessageBodyAC(body))
-  }
-  let onMessageClick = () => {
-    props.dispatch(sendMessageAC())
-  }
-
+export const DialogsContainer = () => {
   return (
-    <Dialogs
-      dialogs={props.dialogs}
-      messages={props.messages}
-      newMessageBody={props.newMessageBody}
-      updateNewMessageBody={onNewMessageChange}
-      onMessageClick={onMessageClick}
-    />
+    <StoreContext.Consumer>
+      {store => {
+        let onNewMessageChange = (body: string) => {
+          store.dispatch(updateNewMessageBodyAC(body))
+        }
+        let onMessageClick = () => {
+          store.dispatch(sendMessageAC())
+        }
+
+        return (
+          <Dialogs
+            dialogs={store.getState().dialogPage.dialogs}
+            messages={store.getState().dialogPage.messages}
+            newMessageBody={store.getState().dialogPage.newMessageBody}
+            updateNewMessageBody={onNewMessageChange}
+            onMessageClick={onMessageClick}
+          />
+        )
+      }}
+    </StoreContext.Consumer>
   )
 }

@@ -13,7 +13,7 @@ export type StatePropsType = {
   store: AppStoreType
 }
 
-function App(props: StatePropsType) {
+function App() {
   return (
     <div className="app-wrapper">
       <Header />
@@ -23,10 +23,10 @@ function App(props: StatePropsType) {
           path="/dialogs"
           render={() => (
             <DialogsContainer
-              dialogs={props.store.getState().dialogPage.dialogs}
-              messages={props.store.getState().dialogPage.messages}
-              newMessageBody={props.store.getState().dialogPage.newMessageBody}
-              dispatch={props.store.dispatch.bind(props.store)}
+            // dialogs={props.store.getState().dialogPage.dialogs}
+            // messages={props.store.getState().dialogPage.messages}
+            // newMessageBody={props.store.getState().dialogPage.newMessageBody}
+            // dispatch={props.store.dispatch.bind(props.store)}
             />
           )}
         />
@@ -34,9 +34,9 @@ function App(props: StatePropsType) {
           path="/profile"
           render={() => (
             <Profile
-              posts={props.store.getState().profilePage.posts}
-              dispatch={props.store.dispatch.bind(props.store)}
-              newPostText={props.store.getState().profilePage.newPostText}
+            // posts={props.store.getState().profilePage.posts}
+            // dispatch={props.store.dispatch.bind(props.store)}
+            // newPostText={props.store.getState().profilePage.newPostText}
             />
           )}
         />

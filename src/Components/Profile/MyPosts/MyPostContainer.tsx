@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react'
 
 import { addPostAC, updateNewPostTextAC } from '../../../Redux/ProfileReducer'
 import { ActionsType } from '../../../Redux/Store'
+import { StoreContext } from '../../../StoreContext'
 
 import { MyPosts } from './MyPosts'
 export type postsType = {
@@ -16,22 +17,28 @@ export type MyPostsContainerType = {
   dispatch: (action: ActionsType) => void
 }
 
-export const MyPostsContainer = (props: MyPostsContainerType) => {
-  let addPost = () => {
-    props.dispatch(addPostAC())
-  }
-  let onPostChange = (text: string) => {
-    let action = updateNewPostTextAC(text)
-
-    props.dispatch(action)
-  }
-
+export const MyPostsContainer = () => {
   return (
-    <MyPosts
-      posts={props.posts}
-      newPostText={props.newPostText}
-      addPost={addPost}
-      updateNewPostText={onPostChange}
-    />
+    <StoreContext.Consumer>
+      {store => {
+        let addPost = () => {
+          store.dispatch(addPostAC())
+        }
+        let onPostChange = (text: string) => {
+          let action = updateNewPostTextAC(text)
+
+          store.dispatch(action)
+        }
+
+        return (
+          <MyPosts
+            posts={store.getState().profilePage.posts}
+            newPostText={store.getState().profilePage.newPostText}
+            addPost={addPost}
+            updateNewPostText={onPostChange}
+          />
+        )
+      }}
+    </StoreContext.Consumer>
   )
 }

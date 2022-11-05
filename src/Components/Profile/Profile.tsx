@@ -3,14 +3,14 @@ import React from 'react'
 import { MyPostsContainer, MyPostsContainerType } from './MyPosts/MyPostContainer'
 import { ProfileInfo } from './ProfileInfo/ProfileInfo'
 
-export const Profile = (props: MyPostsContainerType) => {
+export const Profile = () => {
   return (
     <div>
       <ProfileInfo />
       <MyPostsContainer
-        dispatch={props.dispatch}
-        posts={props.posts}
-        newPostText={props.newPostText}
+      // dispatch={props.dispatch}
+      // posts={props.posts}
+      // newPostText={props.newPostText}
       />
     </div>
   )

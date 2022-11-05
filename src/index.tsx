@@ -8,6 +8,7 @@ import App from './App'
 import { DialogsType, MessagesType } from './Components/Dialogs/Dialogs'
 import { postsType } from './Components/Profile/MyPosts/MyPosts'
 import { store } from './Redux/ReduxStore'
+import { Provider, StoreContext } from './StoreContext'
 
 export type stateType = {
   profilePage: {
@@ -24,7 +25,9 @@ export type stateType = {
 export let rerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App store={store} />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>,
     document.getElementById('root')
   )
