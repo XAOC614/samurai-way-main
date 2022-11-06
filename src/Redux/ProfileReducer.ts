@@ -24,15 +24,20 @@ export const profileReducer = (
         message: state.newPostText,
         like: 0,
       }
+      let stateCopy = { ...state }
 
-      state.posts.push(newPost)
-      state.newPostText = ''
+      stateCopy.posts = [...state.posts]
+      stateCopy.posts.push(newPost)
+      stateCopy.newPostText = ''
 
-      return state
-    case 'UPDATE-NEW-POST-TEXT':
-      state.newPostText = action.newText
+      return stateCopy
+    case 'UPDATE-NEW-POST-TEXT': {
+      let stateCopy = { ...state }
 
-      return state
+      stateCopy.newPostText = action.newText
+
+      return stateCopy
+    }
     default:
       return state
   }
