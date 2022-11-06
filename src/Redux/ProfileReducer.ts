@@ -18,7 +18,7 @@ export const profileReducer = (
   action: ActionsType
 ): InitialStateType => {
   switch (action.type) {
-    case 'ADD-POST':
+    case 'ADD-POST': {
       let newPost: newPostType = {
         id: new Date().getTime(),
         message: state.newPostText,
@@ -31,6 +31,7 @@ export const profileReducer = (
       stateCopy.newPostText = ''
 
       return stateCopy
+    }
     case 'UPDATE-NEW-POST-TEXT': {
       let stateCopy = { ...state }
 
