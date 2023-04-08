@@ -7,6 +7,8 @@ import { DialogsContainer } from './Components/Dialogs/DialogContainer'
 import { Header } from './Components/Header/Header'
 import { Navbar } from './Components/Navbar/Navbar'
 import { Profile } from './Components/Profile/Profile'
+import Users from './Components/Users/UsersContainer'
+import UsersContainer from './Components/Users/UsersContainer'
 import { AppStateType } from './Redux/ReduxStore'
 
 export type StatePropsType = {
@@ -40,6 +42,7 @@ function App() {
             />
           )}
         />
+        <Route path="/users" render={() => <UsersContainer />} />
         {/*<Route path='/news' component={News}/>*/}
         {/*<Route path='/music' component={Music}/>*/}
         {/*<Route path='/setting' component={Setting}/>*/}

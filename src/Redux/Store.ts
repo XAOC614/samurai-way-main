@@ -2,6 +2,7 @@ import { rerenderEntireTree, stateType } from '../index'
 
 import { dialogReducer } from './DialogsReducer'
 import { profileReducer } from './ProfileReducer'
+import { userType } from './UsersReducer'
 
 export type newPostType = {
   id: number
@@ -29,11 +30,26 @@ type NewMessageBodyType = {
 type SendMessageType = {
   type: 'SEND-MESSAGE'
 }
+type UsersFollowType = {
+  type: 'FOLLOW'
+  userId: number
+}
+type UsersUnFollowType = {
+  type: 'UNFOLLOW'
+  userId: number
+}
+type SetUsersType = {
+  type: 'SET_USERS'
+  users: Array<userType>
+}
 export type ActionsType =
   | NewPostTextActionType
   | AddPostActionType
   | NewMessageBodyType
   | SendMessageType
+  | UsersFollowType
+  | UsersUnFollowType
+  | SetUsersType
 
 // export let store: storeType = {
 //   _state: {
