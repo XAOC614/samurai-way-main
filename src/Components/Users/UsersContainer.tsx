@@ -13,6 +13,7 @@ import {
 } from '../../Redux/UsersReducer'
 
 import { Users } from './Users'
+import UsersC from './UsersC'
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 
 type MapStatePropsType = {
@@ -44,4 +45,4 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersC)
