@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import userPhoto from '../../assets/images/pngtree-user-vector-avatar-png-image_1541962.jpg'
 
+import s from './users.module.css'
 import { UsersPropsType } from './UsersContainer'
 
 class UsersC extends React.Component<UsersPropsType> {
@@ -14,8 +15,25 @@ class UsersC extends React.Component<UsersPropsType> {
   }
 
   render() {
+    let pagesCount = this.props.totalUsersCount / this.props.pageSize
+    let pages = []
+
+    for (let i = 0; i <= pagesCount; i++) {
+      pages.push(i)
+    }
+
     return (
       <div>
+        <div>
+          {pages.map(p => {
+            return <span className={this.props.currentPage === p && s.selectedPage}>{p}</span>
+          })}
+          <span className={s.selectedPage}> 1 </span>
+          <span> 2 </span>
+          <span> 3 </span>
+          <span> 4 </span>
+          <span> 5 </span>
+        </div>
         {this.props.usersPage.users.map(u => (
           <div key={u.id}>
             <span>

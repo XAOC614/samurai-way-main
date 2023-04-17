@@ -2,6 +2,9 @@ import { ActionsType } from './Store'
 
 export type InitialStateType = {
   users: Array<userType>
+  pageSize: number
+  totalUsersCount: number
+  currentPage: number
 }
 export type userType = {
   id: number
@@ -16,6 +19,9 @@ export type userType = {
 
 let initialState: InitialStateType = {
   users: [],
+  pageSize: 5,
+  totalUsersCount: 0,
+  currentPage: 1,
 }
 
 export const usersReducer = (
