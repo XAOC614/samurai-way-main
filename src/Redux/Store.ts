@@ -50,6 +50,10 @@ type SetTotalUsersCountType = {
   type: 'SET_TOTAL_USER_COUNT'
   totalCount: number
 }
+type setIsFetchingType = {
+  type: 'TOGGLE_IS_FETCHING'
+  isFetching: boolean
+}
 export type ActionsType =
   | NewPostTextActionType
   | AddPostActionType
@@ -60,6 +64,7 @@ export type ActionsType =
   | SetUsersType
   | SetCurrentPageType
   | SetTotalUsersCountType
+  | setIsFetchingType
 
 // export let store: storeType = {
 //   _state: {
