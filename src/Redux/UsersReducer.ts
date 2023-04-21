@@ -54,7 +54,13 @@ export const usersReducer = (
       }
     }
     case 'SET_USERS': {
-      return { ...state, users: [...state.users, ...action.users] }
+      return { ...state, users: action.users }
+    }
+    case 'SET_CURRENT_PAGE': {
+      return { ...state, currentPage: action.currentPage }
+    }
+    case 'SET_TOTAL_USER_COUNT': {
+      return { ...state, totalUsersCount: action.totalCount }
     }
     default:
       return state
@@ -76,5 +82,17 @@ export const unfollowAC = (id: number) => {
   return {
     type: 'UNFOLLOW',
     userId: id,
+  } as const
+}
+export const setCurrentPageAC = (currentPage: number) => {
+  return {
+    type: 'SET_CURRENT_PAGE',
+    currentPage: currentPage,
+  } as const
+}
+export const setTotalUserCountAC = (totalCount: number) => {
+  return {
+    type: 'SET_TOTAL_USER_COUNT',
+    totalCount: totalCount,
   } as const
 }

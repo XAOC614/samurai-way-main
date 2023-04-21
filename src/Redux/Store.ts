@@ -42,6 +42,14 @@ type SetUsersType = {
   type: 'SET_USERS'
   users: Array<userType>
 }
+type SetCurrentPageType = {
+  type: 'SET_CURRENT_PAGE'
+  currentPage: number
+}
+type SetTotalUsersCountType = {
+  type: 'SET_TOTAL_USER_COUNT'
+  totalCount: number
+}
 export type ActionsType =
   | NewPostTextActionType
   | AddPostActionType
@@ -50,6 +58,8 @@ export type ActionsType =
   | UsersFollowType
   | UsersUnFollowType
   | SetUsersType
+  | SetCurrentPageType
+  | SetTotalUsersCountType
 
 // export let store: storeType = {
 //   _state: {
