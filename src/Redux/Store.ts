@@ -54,6 +54,10 @@ type setIsFetchingType = {
   type: 'TOGGLE_IS_FETCHING'
   isFetching: boolean
 }
+type setUserProfileType = {
+  type: 'SET_USER_PROFILE'
+  profile: null
+}
 export type ActionsType =
   | NewPostTextActionType
   | AddPostActionType
@@ -65,6 +69,7 @@ export type ActionsType =
   | SetCurrentPageType
   | SetTotalUsersCountType
   | setIsFetchingType
+  | setUserProfileType
 
 // export let store: storeType = {
 //   _state: {

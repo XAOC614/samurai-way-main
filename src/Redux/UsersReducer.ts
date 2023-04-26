@@ -77,7 +77,7 @@ export const follow = (id: number) => {
     userId: id,
   } as const
 }
-export const setUser = (users: Array<userType>) => {
+export const setUsers = (users: Array<userType>) => {
   return {
     type: 'SET_USERS',
     users: users,

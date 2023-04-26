@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { NavLink } from 'react-router-dom'
+
 import userPhoto from '../../assets/images/pngtree-user-vector-avatar-png-image_1541962.jpg'
 import { InitialStateType } from '../../Redux/UsersReducer'
 
@@ -42,24 +44,26 @@ export const Users = (props: UsersPresentationPropsType) => {
         <div key={u.id}>
           <span>
             <div>
-              <img src={u.photos.small != null ? u.photos.small : userPhoto} />
+              <NavLink to={'/profile/' + u.id}>
+                <img src={u.photos.small != null ? u.photos.small : userPhoto} />
+              </NavLink>
             </div>
             <div>
               {u.followed ? (
+                <button
+                  onClick={() => {
+                    props.follow(u.id)
+                  }}
+                >
+                  follow
+                </button>
+              ) : (
                 <button
                   onClick={() => {
                     props.unfollow(u.id)
                   }}
                 >
                   Unfollow
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    props.follow(u.id)
-                  }}
-                >
-                  Follow
                 </button>
               )}
             </div>
