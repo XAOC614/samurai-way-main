@@ -4,10 +4,10 @@ import { ActionsType, newPostType } from './Store'
 type InitialStateType = {
   posts: Array<postsType>
   newPostText: string
-  profile: null
+  profile: ProfileType
 }
 export type ProfileType = {
-  userId: number
+  userId: string
   lookingForAJob: boolean
   lookingForAJobDescription: string
   fullName: string
@@ -21,6 +21,10 @@ export type ProfileType = {
     youtube: string
     mainLink: string
   }
+  photos: {
+    small: string
+    large: string
+  }
 }
 let initialState = {
   posts: [
@@ -28,7 +32,26 @@ let initialState = {
     { id: 2, message: 'It`s my firs post', like: 20 },
   ],
   newPostText: 'it-incubator.com',
-  profile: null,
+  profile: {
+    userId: 'string',
+    lookingForAJob: false,
+    lookingForAJobDescription: 'string',
+    fullName: 'string',
+    contacts: {
+      github: 'string',
+      vk: 'string',
+      facebook: 'string',
+      instagram: 'string',
+      twitter: 'string',
+      website: 'string',
+      youtube: 'string',
+      mainLink: 'string',
+    },
+    photos: {
+      small: 'string',
+      large: 'string',
+    },
+  },
 }
 
 export const profileReducer = (
@@ -69,7 +92,7 @@ export const addPostAC = () => {
     type: 'ADD-POST',
   } as const
 }
-export const setUserProfile = (profile: null) => {
+export const setUserProfile = (profile: ProfileType) => {
   return {
     type: 'SET_USER_PROFILE',
     profile: profile,

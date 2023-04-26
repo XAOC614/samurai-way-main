@@ -1,7 +1,7 @@
 import { rerenderEntireTree, stateType } from '../index'
 
 import { dialogReducer } from './DialogsReducer'
-import { profileReducer } from './ProfileReducer'
+import { profileReducer, ProfileType } from './ProfileReducer'
 import { userType } from './UsersReducer'
 
 export type newPostType = {
@@ -56,7 +56,7 @@ type setIsFetchingType = {
 }
 type setUserProfileType = {
   type: 'SET_USER_PROFILE'
-  profile: null
+  profile: ProfileType
 }
 export type ActionsType =
   | NewPostTextActionType

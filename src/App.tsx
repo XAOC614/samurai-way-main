@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom'
 import { DialogsContainer } from './Components/Dialogs/DialogContainer'
 import { Header } from './Components/Header/Header'
 import { Navbar } from './Components/Navbar/Navbar'
-import { Profile } from './Components/Profile/Profile'
+import ProfileContainer from './Components/Profile/ProfileContainer'
 import { UsersContainer } from './Components/Users/UsersContainer'
 import { AppStateType } from './Redux/ReduxStore'
 
@@ -32,9 +32,9 @@ function App() {
           )}
         />
         <Route
-          path="/profile"
+          path="/profile/:userId?"
           render={() => (
-            <Profile
+            <ProfileContainer
             // posts={props.store.getState().profilePage.posts}
             // dispatch={props.store.dispatch.bind(props.store)}
             // newPostText={props.store.getState().profilePage.newPostText}
