@@ -12,8 +12,8 @@ import { Profile } from './Profile'
 type PathParamsType = {
   userId: string
 }
-type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
-type OwnPropsType = MapStatePropsType & mapDispatchPropsType
+export type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
+export type OwnPropsType = MapStatePropsType & mapDispatchPropsType
 type MapStatePropsType = {
   profile: ProfileType
 }

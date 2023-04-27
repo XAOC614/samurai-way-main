@@ -58,6 +58,15 @@ type setUserProfileType = {
   type: 'SET_USER_PROFILE'
   profile: ProfileType
 }
+type setUserDataType = {
+  type: 'SET_USER_DATA'
+  data: {
+    userId: number
+    email: string
+    login: string
+  }
+}
+
 export type ActionsType =
   | NewPostTextActionType
   | AddPostActionType
@@ -70,6 +79,7 @@ export type ActionsType =
   | SetTotalUsersCountType
   | setIsFetchingType
   | setUserProfileType
+  | setUserDataType
 
 // export let store: storeType = {
 //   _state: {
