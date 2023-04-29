@@ -23,7 +23,6 @@ let initialState: InitialType = {
 }
 
 const authReducer = (state = initialState, action: ActionsType): InitialType => {
-  debugger
   switch (action.type) {
     case 'SET_USER_DATA': {
       let stateCopy = { ...state }

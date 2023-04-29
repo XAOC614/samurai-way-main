@@ -1,5 +1,6 @@
 import React from 'react'
 
+import axios from 'axios'
 import { NavLink } from 'react-router-dom'
 
 import userPhoto from '../../assets/images/pngtree-user-vector-avatar-png-image_1541962.jpg'
@@ -52,18 +53,48 @@ export const Users = (props: UsersPresentationPropsType) => {
               {u.followed ? (
                 <button
                   onClick={() => {
-                    props.follow(u.id)
+                    axios
+                      .delete(
+                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+
+                        {
+                          withCredentials: true,
+                          headers: {
+                            'API-KEY': '0a18320d-7a98-4203-b236-40819976048c',
+                          },
+                        }
+                      )
+                      .then(response => {
+                        if (response.data.resultCode == 0) {
+                          props.unfollow(u.id)
+                        }
+                      })
                   }}
                 >
-                  follow
+                  Unfollow
                 </button>
               ) : (
                 <button
                   onClick={() => {
-                    props.unfollow(u.id)
+                    axios
+                      .post(
+                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                        {},
+                        {
+                          withCredentials: true,
+                          headers: {
+                            'API-KEY': '0a18320d-7a98-4203-b236-40819976048c',
+                          },
+                        }
+                      )
+                      .then(response => {
+                        if (response.data.resultCode == 0) {
+                          props.follow(u.id)
+                        }
+                      })
                   }}
                 >
-                  Unfollow
+                  Follow
                 </button>
               )}
             </div>
