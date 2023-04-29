@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom'
 
 import { DialogsContainer } from './Components/Dialogs/DialogContainer'
 import { Header } from './Components/Header/Header'
+import HeaderContainer from './Components/Header/HeaderContainer'
 import { Navbar } from './Components/Navbar/Navbar'
 import ProfileContainer from './Components/Profile/ProfileContainer'
 import { UsersContainer } from './Components/Users/UsersContainer'
@@ -17,7 +18,7 @@ export type StatePropsType = {
 function App() {
   return (
     <div className="app-wrapper">
-      <Header />
+      <HeaderContainer />
       <Navbar />
       <div className="app-wrapper-content">
         <Route
