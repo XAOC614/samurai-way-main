@@ -66,6 +66,11 @@ type setUserDataType = {
     login: string
   }
 }
+type toggleFollowingProgressType = {
+  type: 'TOGGLE_IS_FOLLOWING_PROGRESS'
+  isFetching: boolean
+  userId: number
+}
 
 export type ActionsType =
   | NewPostTextActionType
@@ -80,6 +85,7 @@ export type ActionsType =
   | setIsFetchingType
   | setUserProfileType
   | setUserDataType
+  | toggleFollowingProgressType
 
 // export let store: storeType = {
 //   _state: {
