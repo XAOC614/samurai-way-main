@@ -1,3 +1,7 @@
+import { Dispatch } from 'redux'
+
+import { usersAPI } from '../api/api'
+
 import { ActionsType } from './Store'
 
 export type InitialStateType = {
@@ -121,5 +125,40 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
     type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
     isFetching: isFetching,
     userId: userId,
+  }
+}
+
+export const getUsers = (currentPage: number, pageSize: number) => {
+  return (dispatch: Dispatch) => {
+    dispatch(setIsFetching(true))
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(setIsFetching(false))
+      dispatch(setUsers(data.items))
+      dispatch(setTotalUserCount(data.totalCount))
+    })
+  }
+}
+
+export const unfollowThunk = (userId: number) => {
+  return (dispatch: Dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    usersAPI.unfollow(userId).then(response => {
+      if (response.data.resultCode == 0) {
+        dispatch(unfollow(userId))
+      }
+      dispatch(toggleFollowingProgress(false, userId))
+    })
+  }
+}
+
+export const followThunk = (userId: number) => {
+  return (dispatch: Dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    usersAPI.follow(userId).then(response => {
+      if (response.data.resultCode == 0) {
+        dispatch(follow(userId))
+      }
+      dispatch(toggleFollowingProgress(false, userId))
+    })
   }
 }
