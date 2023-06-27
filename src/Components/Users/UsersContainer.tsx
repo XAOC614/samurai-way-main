@@ -35,21 +35,9 @@ type MapDispatchPropsType = {
 class UsersAPIComponent extends React.Component<UsersPropsType> {
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize)
-    // this.props.setIsFetching(true)
-    // usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-    //   this.props.setIsFetching(false)
-    //   this.props.setUsers(data.items)
-    //   this.props.setTotalUserCount(data.totalCount)
-    // })
   }
   onPageChanged = (pageNumber: number) => {
     this.props.getUsers(pageNumber, this.props.pageSize)
-    // this.props.setCurrentPage(pageNumber)
-    // this.props.setIsFetching(true)
-    // usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-    //   this.props.setUsers(data.items)
-    //   this.props.setIsFetching(false)
-    // })
   }
   render() {
     return (

@@ -1,3 +1,6 @@
+import { Dispatch } from 'redux'
+
+import { usersAPI } from '../api/api'
 import { postsType } from '../Components/Profile/MyPosts/MyPosts'
 
 import { ActionsType, newPostType } from './Store'
@@ -103,4 +106,10 @@ export const updateNewPostTextAC = (text: string) => {
     type: 'UPDATE-NEW-POST-TEXT',
     newText: text,
   } as const
+}
+
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+  usersAPI.getProfile(userId).then(response => {
+    dispatch(setUserProfile(response.data))
+  })
 }
