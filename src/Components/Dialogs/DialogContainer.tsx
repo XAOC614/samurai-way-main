@@ -24,35 +24,12 @@ export type DialogsPropsType = {
   dispatch: (action: ActionsType) => void
 }
 
-// export const DialogsContainer = () => {
-//   return (
-//     <StoreContext.Consumer>
-//       {store => {
-//         let onNewMessageChange = (body: string) => {
-//           store.dispatch(updateNewMessageBodyAC(body))
-//         }
-//         let onMessageClick = () => {
-//           store.dispatch(sendMessageAC())
-//         }
-//
-//         return (
-//           <Dialogs
-//             dialogs={store.getState().dialogPage.dialogs}
-//             messages={store.getState().dialogPage.messages}
-//             newMessageBody={store.getState().dialogPage.newMessageBody}
-//             updateNewMessageBody={onNewMessageChange}
-//             onMessageClick={onMessageClick}
-//           />
-//         )
-//       }}
-//     </StoreContext.Consumer>
-//   )
-// }
 let mapStateToProps = (state: AppStateType) => {
   return {
     dialogs: state.dialogPage.dialogs,
     messages: state.dialogPage.messages,
     newMessageBody: state.dialogPage.newMessageBody,
+    auth: state.auth.isAuth,
   }
 }
 let mapDispatchToProps = (dispatch: Dispatch) => {

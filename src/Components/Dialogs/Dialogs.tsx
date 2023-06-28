@@ -1,5 +1,7 @@
 import React, { ChangeEvent } from 'react'
 
+import { Redirect } from 'react-router-dom'
+
 import { sendMessageAC, updateNewMessageBodyAC } from '../../Redux/DialogsReducer'
 import { ActionsType } from '../../Redux/Store'
 
@@ -20,6 +22,7 @@ export type DialogsPropsType = {
   newMessageBody: string
   updateNewMessageBody: (body: string) => void
   onMessageClick: () => void
+  auth: boolean
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -29,6 +32,7 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     props.updateNewMessageBody(body)
   }
+
   let onMessageClick = () => {
     props.onMessageClick()
   }
@@ -39,6 +43,8 @@ export const Dialogs = (props: DialogsPropsType) => {
   let messagesElements = props.messages.map((m, index) => (
     <Message message={m.message} key={index} />
   ))
+
+  if (!props.auth) return <Redirect to={'/login'} />
 
   return (
     <div className={c.dialogs}>
