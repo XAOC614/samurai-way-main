@@ -44,8 +44,6 @@ export const Dialogs = (props: DialogsPropsType) => {
     <Message message={m.message} key={index} />
   ))
 
-  if (!props.auth) return <Redirect to={'/login'} />
-
   return (
     <div className={c.dialogs}>
       <div className={c.dialogsItems}>{dialogsElements}</div>
