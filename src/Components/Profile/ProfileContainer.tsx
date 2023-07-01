@@ -16,7 +16,7 @@ export type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 export type OwnPropsType = MapStatePropsType & mapDispatchPropsType
 type MapStatePropsType = {
   profile: ProfileType
-  auth: boolean
+  // auth: boolean
 }
 type mapDispatchPropsType = {
   getUserProfile: (userId: string) => void
@@ -56,4 +56,6 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
-export default connect(mapStateToProps, { getUserProfile })(WithUrlDataContainerComponent)
+export default withAuthRedirect(
+  connect(mapStateToProps, { getUserProfile })(WithUrlDataContainerComponent)
+)

@@ -1,8 +1,10 @@
 import React, { ChangeEvent } from 'react'
 
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { Dispatch } from 'redux'
 
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { sendMessageAC, updateNewMessageBodyAC } from '../../Redux/DialogsReducer'
 import { AppStateType } from '../../Redux/ReduxStore'
 import { ActionsType } from '../../Redux/Store'
@@ -42,5 +44,6 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
     },
   }
 }
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
