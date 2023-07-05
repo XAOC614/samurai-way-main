@@ -17,7 +17,7 @@ export const ProfileInfo = (props: any) => {
       {/*</div>*/}
       <div className={c.descriptionBlock}>
         <img src={props.profile.photos.large} />
-        <ProfileStatus status={'Hello'} />
+        <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
       </div>
     </div>
   )

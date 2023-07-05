@@ -7,7 +7,11 @@ import { ProfileInfo } from './ProfileInfo/ProfileInfo'
 export const Profile = (props: PropsType) => {
   return (
     <div>
-      <ProfileInfo profile={props.profile} />
+      <ProfileInfo
+        profile={props.profile}
+        status={props.status}
+        updateUserStatus={props.updateUserStatus}
+      />
       <MyPostsContainer
       // dispatch={props.dispatch}
       // posts={props.posts}

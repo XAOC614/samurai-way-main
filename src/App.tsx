@@ -22,27 +22,8 @@ function App() {
       <HeaderContainer />
       <Navbar />
       <div className="app-wrapper-content">
-        <Route
-          path="/dialogs"
-          render={() => (
-            <DialogsContainer
-            // dialogs={props.store.getState().dialogPage.dialogs}
-            // messages={props.store.getState().dialogPage.messages}
-            // newMessageBody={props.store.getState().dialogPage.newMessageBody}
-            // dispatch={props.store.dispatch.bind(props.store)}
-            />
-          )}
-        />
-        <Route
-          path="/profile/:userId?"
-          render={() => (
-            <ProfileContainer
-            // posts={props.store.getState().profilePage.posts}
-            // dispatch={props.store.dispatch.bind(props.store)}
-            // newPostText={props.store.getState().profilePage.newPostText}
-            />
-          )}
-        />
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
         <Route path="/users" render={() => <UsersContainer />} />
         {/*<Route path='/news' component={News}/>*/}
         {/*<Route path='/music' component={Music}/>*/}
