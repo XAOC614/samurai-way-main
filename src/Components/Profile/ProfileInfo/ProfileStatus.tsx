@@ -1,7 +1,10 @@
 import { log } from 'util'
 
 import React from 'react'
-
+type stateType = {
+  editMode: boolean
+  status: string
+}
 class ProfileStatus extends React.Component<any> {
   state = {
     editMode: false,
@@ -17,10 +20,14 @@ class ProfileStatus extends React.Component<any> {
   onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ status: e.target.value })
   }
-
+  componentDidUpdate(prevProps: stateType, prevState: stateType) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        status: this.props.status,
+      })
+    }
+  }
   render() {
-    console.log(this.props.status, 'да что угодно')
-
     return (
       <div>
         {!this.state.editMode && (
