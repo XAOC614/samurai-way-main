@@ -1,5 +1,7 @@
 import React, { ChangeEvent } from 'react'
 
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
+
 import c from './MyPosts.module.css'
 import { Posts } from './Post/Posts'
 export type postsType = {
@@ -10,37 +12,52 @@ export type postsType = {
 export type MyPostsType = {
   posts: Array<postsType>
   newPostText: string
-  addPost: () => void
-  updateNewPostText: (text: string) => void
+  addPost: (newPostText: string) => void
+  // updateNewPostText: (text: string) => void
 }
-
+type newPostTextType = {
+  newPostText: string
+}
 export const MyPosts = (props: MyPostsType) => {
   let postsElements = props.posts.map((p, index) => (
     <Posts message={p.message} like={p.like} key={index} />
   ))
 
-  let addPost = () => {
-    props.addPost()
-  }
-  let updateNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let text = e.currentTarget.value
-
-    props.updateNewPostText(text)
+  // let addPost = () => {
+  //   props.addPost()
+  // }
+  // let updateNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  //   let text = e.currentTarget.value
+  //
+  //   props.updateNewPostText(text)
+  // }
+  let onAddPost = (values: newPostTextType) => {
+    props.addPost(values.newPostText)
   }
 
   return (
     <div>
       <h3>My Posts</h3>
       <div className={c.item}>
-        <div>
-          <textarea onChange={updateNewPostText} value={props.newPostText} />
-        </div>
-        <div>
-          <button onClick={addPost}>New Post</button>
-          <button>Remove</button>
-        </div>
+        <AddNewPostFormRedux onSubmit={onAddPost} />
         <div className={c.posts}>{postsElements}</div>
       </div>
     </div>
   )
 }
+
+const AddNewPostForm: React.FC<InjectedFormProps<newPostTextType>> = props => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field name={'newPostText'} component={'textarea'} />
+      </div>
+      <div>
+        <button>New Post</button>
+      </div>
+    </form>
+  )
+}
+const AddNewPostFormRedux = reduxForm<newPostTextType>({ form: 'ProfileAddNewPostForm' })(
+  AddNewPostForm
+)

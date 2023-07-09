@@ -72,7 +72,7 @@ export const profileReducer = (
     case 'ADD-POST': {
       let newPost: newPostType = {
         id: new Date().getTime(),
-        message: state.newPostText,
+        message: action.newPostText,
         like: 0,
       }
       let stateCopy = { ...state }
@@ -83,13 +83,13 @@ export const profileReducer = (
 
       return stateCopy
     }
-    case 'UPDATE-NEW-POST-TEXT': {
-      let stateCopy = { ...state }
-
-      stateCopy.newPostText = action.newText
-
-      return stateCopy
-    }
+    // case 'UPDATE-NEW-POST-TEXT': {
+    //   let stateCopy = { ...state }
+    //
+    //   stateCopy.newPostText = action.newText
+    //
+    //   return stateCopy
+    // }
     case 'SET_USER_PROFILE': {
       return { ...state, profile: action.profile }
     }
@@ -103,9 +103,10 @@ export const profileReducer = (
       return state
   }
 }
-export const addPostAC = () => {
+export const addPostAC = (newPostText: string) => {
   return {
     type: 'ADD-POST',
+    newPostText: newPostText,
   } as const
 }
 export const setUserProfile = (profile: ProfileType) => {
@@ -114,12 +115,12 @@ export const setUserProfile = (profile: ProfileType) => {
     profile: profile,
   } as const
 }
-export const updateNewPostTextAC = (text: string) => {
-  return {
-    type: 'UPDATE-NEW-POST-TEXT',
-    newText: text,
-  } as const
-}
+// export const updateNewPostTextAC = (text: string) => {
+//   return {
+//     type: 'UPDATE-NEW-POST-TEXT',
+//     newText: text,
+//   } as const
+// }
 export const setStatus = (status: string) => {
   return {
     type: 'SET_STATUS',

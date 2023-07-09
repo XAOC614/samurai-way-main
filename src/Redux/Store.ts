@@ -22,6 +22,7 @@ type NewPostTextActionType = {
 }
 type AddPostActionType = {
   type: 'ADD-POST'
+  newPostText: string
 }
 type NewMessageBodyType = {
   type: 'UPDATE-NEW-MESSAGE-BODY'
@@ -29,6 +30,7 @@ type NewMessageBodyType = {
 }
 type SendMessageType = {
   type: 'SEND-MESSAGE'
+  newMessageBody: string
 }
 type UsersFollowType = {
   type: 'FOLLOW'

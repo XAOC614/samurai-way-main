@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
-import { addPostAC, updateNewPostTextAC } from '../../../Redux/ProfileReducer'
+import { addPostAC } from '../../../Redux/ProfileReducer'
 import { AppStateType } from '../../../Redux/ReduxStore'
 import { ActionsType } from '../../../Redux/Store'
 
@@ -53,14 +53,14 @@ const mapStateToProps = (state: AppStateType) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    addPost: () => {
-      dispatch(addPostAC())
+    addPost: (newPostText: string) => {
+      dispatch(addPostAC(newPostText))
     },
-    updateNewPostText: (text: string) => {
-      let action = updateNewPostTextAC(text)
-
-      dispatch(action)
-    },
+    // updateNewPostText: (text: string) => {
+    //   let action = updateNewPostTextAC(text)
+    //
+    //   dispatch(action)
+    // },
   }
 }
 

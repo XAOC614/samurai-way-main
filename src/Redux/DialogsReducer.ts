@@ -28,15 +28,14 @@ export const dialogReducer = (
   action: ActionsType
 ): InitialStateType => {
   switch (action.type) {
-    case 'UPDATE-NEW-MESSAGE-BODY':
-      return { ...state, newMessageBody: action.body }
+    // case 'UPDATE-NEW-MESSAGE-BODY':
+    //   return { ...state, newMessageBody: action.body }
 
     case 'SEND-MESSAGE': {
-      let body = state.newMessageBody
+      let body = action.newMessageBody
 
       return {
         ...state,
-        newMessageBody: '',
         messages: [...state.messages, { id: 4, message: body }],
       }
     }
@@ -45,14 +44,15 @@ export const dialogReducer = (
   }
 }
 
-export const sendMessageAC = () => {
+export const sendMessageAC = (newMessageBody: string) => {
   return {
     type: 'SEND-MESSAGE',
+    newMessageBody: newMessageBody,
   } as const
 }
-export const updateNewMessageBodyAC = (body: string) => {
-  return {
-    type: 'UPDATE-NEW-MESSAGE-BODY',
-    body: body,
-  } as const
-}
+// export const updateNewMessageBodyAC = (body: string) => {
+//   return {
+//     type: 'UPDATE-NEW-MESSAGE-BODY',
+//     body: body,
+//   } as const
+// }
