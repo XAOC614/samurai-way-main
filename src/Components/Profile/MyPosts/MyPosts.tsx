@@ -2,6 +2,9 @@ import React, { ChangeEvent } from 'react'
 
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 
+import { maxLengthCreator, required } from '../../../utils/validators/validators'
+import { Textarea } from '../../FormsControls/FormsControls'
+
 import c from './MyPosts.module.css'
 import { Posts } from './Post/Posts'
 export type postsType = {
@@ -18,6 +21,9 @@ export type MyPostsType = {
 type newPostTextType = {
   newPostText: string
 }
+
+const maxLength = maxLengthCreator(10)
+
 export const MyPosts = (props: MyPostsType) => {
   let postsElements = props.posts.map((p, index) => (
     <Posts message={p.message} like={p.like} key={index} />
@@ -50,7 +56,12 @@ const AddNewPostForm: React.FC<InjectedFormProps<newPostTextType>> = props => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        <Field name={'newPostText'} component={'textarea'} />
+        <Field
+          name={'newPostText'}
+          component={Textarea}
+          placeholder={'post message'}
+          validate={[required, maxLength]}
+        />
       </div>
       <div>
         <button>New Post</button>

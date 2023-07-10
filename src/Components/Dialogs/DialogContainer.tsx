@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { compose, Dispatch } from 'redux'
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import { sendMessageAC, updateNewMessageBodyAC } from '../../Redux/DialogsReducer'
+import { sendMessageAC } from '../../Redux/DialogsReducer'
 import { AppStateType } from '../../Redux/ReduxStore'
 import { ActionsType } from '../../Redux/Store'
 
@@ -36,11 +36,11 @@ let mapStateToProps = (state: AppStateType) => {
 }
 let mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    updateNewMessageBody: (body: string) => {
-      dispatch(updateNewMessageBodyAC(body))
-    },
-    onMessageClick: () => {
-      dispatch(sendMessageAC())
+    // updateNewMessageBody: (body: string) => {
+    //   dispatch(updateNewMessageBodyAC(body))
+    // },
+    onMessageClick: (newMessageBody: string) => {
+      dispatch(sendMessageAC(newMessageBody))
     },
   }
 }
