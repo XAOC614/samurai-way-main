@@ -29,21 +29,25 @@ let initialState: InitialType = {
 const authReducer = (state = initialState, action: ActionsType): InitialType => {
   switch (action.type) {
     case 'SET_USER_DATA': {
-      let stateCopy = { ...state }
-
-      stateCopy.data.login = action.data.login
-      stateCopy.isAuth = true
-
-      return stateCopy
+      return {
+        ...state,
+        ...action.payload,
+      }
+      // let stateCopy = { ...state }
+      //
+      // stateCopy.data.login = action.data.login
+      // stateCopy.isAuth = true
+      //
+      // return stateCopy
     }
     default:
       return state
   }
 }
 
-export const setUserData = (id: number, email: string, login: string) => ({
+export const setUserData = (id: number, email: string, login: string, isAuth: boolean) => ({
   type: 'SET_USER_DATA',
-  data: { id, email, login },
+  payload: { id, email, login, isAuth },
 })
 
 export const getUserData = () => (dispatch: Dispatch) => {
@@ -51,9 +55,23 @@ export const getUserData = () => (dispatch: Dispatch) => {
     if (response.data.resultCode === 0) {
       let { id, email, login } = response.data.data
 
-      dispatch(setUserData(id, email, login))
+      dispatch(setUserData(id, email, login, true))
     }
   })
 }
-
+export const login =
+  (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+    authAPI.login(email, password, rememberMe).then(response => {
+      if (response.data.resultCode === 0) {
+        dispatch(getUserData())
+      }
+    })
+  }
+export const logout = () => (dispatch: Dispatch) => {
+  authAPI.logout().then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(setUserData(0, '', '', false))
+    }
+  })
+}
 export default authReducer

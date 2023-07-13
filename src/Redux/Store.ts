@@ -62,10 +62,11 @@ type setUserProfileType = {
 }
 type setUserDataType = {
   type: 'SET_USER_DATA'
-  data: {
+  payload: {
     userId: number
     email: string
     login: string
+    isAuth: boolean
   }
 }
 type toggleFollowingProgressType = {
