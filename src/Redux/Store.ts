@@ -40,7 +40,7 @@ type UsersUnFollowType = {
   type: 'UNFOLLOW'
   userId: number
 }
-type SetUsersType = {
+export type SetUsersType = {
   type: 'SET_USERS'
   users: Array<userType>
 }

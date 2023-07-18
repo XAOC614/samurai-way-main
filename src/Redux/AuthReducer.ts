@@ -1,8 +1,10 @@
 import { Dispatch } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 
 import { authAPI } from '../api/api'
 
-import { ActionsType } from './Store'
+import { RootStateType } from './ReduxStore'
+import { ActionsType, SetUsersType } from './Store'
 
 type InitialType = {
   data: {
@@ -60,7 +62,8 @@ export const getUserData = () => (dispatch: Dispatch) => {
   })
 }
 export const login =
-  (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+  (email: string, password: string, rememberMe: boolean) =>
+  (dispatch: ThunkDispatch<RootStateType, {}, SetUsersType>) => {
     authAPI.login(email, password, rememberMe).then(response => {
       if (response.data.resultCode === 0) {
         dispatch(getUserData())

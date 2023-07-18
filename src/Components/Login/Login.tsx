@@ -15,6 +15,7 @@ type FormDataType = {
   password: string
   rememberMe: boolean
 }
+
 const Login = (props: any) => {
   const onSubmit = (formData: FormDataType) => {
     props.login(formData.email, formData.password, formData.rememberMe)

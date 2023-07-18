@@ -17,3 +17,5 @@ let rootReducer = combineReducers({
 export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 export type AppStateType = ReturnType<typeof rootReducer>
+
+export type RootStateType = ReturnType<typeof store.getState>
